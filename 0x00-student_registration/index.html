@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Student Registration</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>Student Registration</h1>
+        <div>
+            <form @submit.prevent="addStudent">
+                <label for="name">name </label>
+                <input type="text" name="name" v-model="form.name" placeholder="Enter Your Name" title="Your Name">
+                <br>
+                <label for="email">email </label>
+                <input type="email" name="email" v-model="form.email" placeholder="Enter Your email" title="Your email">
+                <br>
+                <label for="password">password </label>
+                <input type="password" name="password" v-model="form.password" placeholder="Enter Your password"
+                    title="Your password">
+                <br>
+                <button type="submit">submit</button>
+            </form>
+        </div>
+        <div v-for="student in students" :key="student.id">
+            <p>{{ student.name }} {{ student.email }} {{ student.password }}</p>
+        </div>
+
+    </div>
+</body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="./script.js"></script>
+
+</html>
