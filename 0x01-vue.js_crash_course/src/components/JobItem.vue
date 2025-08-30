@@ -8,6 +8,10 @@ const props = defineProps({
 
 let showDescription = ref(false)
 
+const toggleDescription = () => {
+  showDescription.value = !showDescription.value
+}
+
 const trunctedDescription = computed(() => {
   if (!showDescription.value && props.job && props.job.description) {
     return props.job.description.substring(0, 90) + '...'
@@ -24,7 +28,8 @@ const trunctedDescription = computed(() => {
     </div>
 
     <div class="mb-5">
-      {{ trunctedDescription }}
+      <div>{{ trunctedDescription }}</div>
+      <button @click="toggleDescription" class="text-green-600">{{ showDescription ? 'less' : 'more' }}</button>
     </div>
 
     <h3 class="text-green-500 mb-2">{{ job.salary }}</h3>
