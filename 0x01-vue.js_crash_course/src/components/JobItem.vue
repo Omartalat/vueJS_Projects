@@ -1,10 +1,18 @@
 <script setup>
-import { defineProps } from 'vue'
-
-defineProps({
+import { defineProps, ref, computed } from 'vue'
+const props = defineProps({
   job: {
     type: Object,
   },
+})
+
+let showDescription = ref(false)
+
+const trunctedDescription = computed(() => {
+  if (!showDescription.value && props.job && props.job.description) {
+    return props.job.description.substring(0, 90) + '...'
+  }
+  return props.job?.description || ''
 })
 </script>
 
@@ -16,7 +24,7 @@ defineProps({
     </div>
 
     <div class="mb-5">
-      {{ job.description }}
+      {{ trunctedDescription }}
     </div>
 
     <h3 class="text-green-500 mb-2">{{ job.salary }}</h3>
